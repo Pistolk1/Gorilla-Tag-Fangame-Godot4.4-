@@ -9,3 +9,4 @@ Changed;
 	* Icons have been updated properly
 	* Q1/Q2 exports have been removed as those devices are no longer supported
 	* updated LICENSE(rember to ask permission to use the code from miziziziz not me @pistolk1)
+	* updated README.MD{only on github}
