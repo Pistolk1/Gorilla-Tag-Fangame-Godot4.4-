@@ -1,7 +1,7 @@
 This Project originates from **Miziziziz** and their **Gorilla Tag Godot Movement** project, 
 the only changes ive made are orginization as well as edits using **ClaudeAI**(still havent tested if they work)
 
-*sidenote;* i hate how github is doing my changelog dirty cause it wasnt made on github >:(
+*sidenote;* markdown it the worst visual text system i will ever force myself to use
 
 **How To Setup?**
 in order to setup the project you must download it and delete the android folder(reinstall *android build template...* for exporting to the quest and other headsets)
