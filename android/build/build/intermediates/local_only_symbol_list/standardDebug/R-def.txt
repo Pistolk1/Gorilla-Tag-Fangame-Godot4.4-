@@ -1,0 +1,6 @@
+R_DEF: Internal format may change without notice
+local
+mipmap icon
+string godot_project_name_string
+style GodotAppMainTheme
+style GodotAppSplashTheme

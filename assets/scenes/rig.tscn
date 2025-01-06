@@ -1,0 +1,80 @@
+[gd_scene load_steps=14 format=3 uid="uid://buc125t2bvypa"]
+
+[ext_resource type="Texture2D" uid="uid://g0knb1wosa08" path="res://assets/models/vr player head.png" id="1_xovfv"]
+[ext_resource type="ArrayMesh" uid="uid://dscak5r7loo1l" path="res://assets/models/player.obj" id="2_by60r"]
+[ext_resource type="Texture2D" uid="uid://doly7c6uwok2n" path="res://assets/models/vrplayerhandleft.png" id="3_5hnqh"]
+[ext_resource type="ArrayMesh" uid="uid://br5vjdpga6x5x" path="res://assets/models/vpplayerlefthand.obj" id="4_u2y2q"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="5_obsvx"]
+[ext_resource type="PackedScene" uid="uid://dgncgj4b56r52" path="res://xr_tools_hand_pusher.tscn" id="6_l6nb4"]
+[ext_resource type="Texture2D" uid="uid://d03li7ebtvv0p" path="res://assets/models/vrplayerhandright.png" id="7_8nole"]
+[ext_resource type="ArrayMesh" uid="uid://b034lil341txw" path="res://assets/models/vrplayerhandright.obj" id="8_lo2uh"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="9_34vvx"]
+[ext_resource type="PackedScene" uid="uid://ctwfhsr53boeg" path="res://movement_hand_walk.tscn" id="10_bca6r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5qp1"]
+albedo_texture = ExtResource("1_xovfv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fneso"]
+albedo_texture = ExtResource("3_5hnqh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_too4x"]
+albedo_texture = ExtResource("7_8nole")
+
+[node name="Player" type="XROrigin3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="XRCamera3D" type="XRCamera3D" parent="."]
+transform = Transform3D(1, 0, -3.55271e-15, 0, 1, 0, 3.55271e-15, 0, 1, -0.263538, 0.0756881, 0.073204)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XRCamera3D"]
+transform = Transform3D(0.718483, 0, 0, 0, 0.804849, 0, 0, 0, 0.543727, 0, -0.36501, 0.195)
+material_override = SubResource("StandardMaterial3D_s5qp1")
+mesh = ExtResource("2_by60r")
+
+[node name="LeftHandController" type="XRController3D" parent="." groups=["handl"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 5.58794e-09, 0, 1, 0, -5.58794e-09, 0, 1, -0.250015, 0, -0.00666046)
+tracker = &"left_hand"
+pose = &"grip"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftHandController"]
+transform = Transform3D(-0.309191, 2.7474e-08, 1.49012e-08, 0, 0.192513, -0.160908, -4.65661e-09, -0.192513, -0.160909, 0.0108528, -0.0444096, 0.0551834)
+material_override = SubResource("StandardMaterial3D_fneso")
+mesh = ExtResource("4_u2y2q")
+
+[node name="MovementTurn" parent="LeftHandController" instance=ExtResource("5_obsvx")]
+
+[node name="XRToolsHandPusher" parent="LeftHandController" instance=ExtResource("6_l6nb4")]
+transform = Transform3D(-4.92993e-08, 0, 1, 0, 1, 0, -1, 0, -4.92993e-08, -0.00666045, 0, 0.250015)
+visible = false
+
+[node name="RightHandController" type="XRController3D" parent="." groups=["handr"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 7.45058e-09, 0, 1, 0, -7.45058e-09, 0, 1, -0.250011, 0, -0.00666046)
+tracker = &"right_hand"
+pose = &"grip"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RightHandController"]
+transform = Transform3D(-0.287, 1.02445e-08, 1.39698e-08, 0, 0.182434, -0.16122, -7.91624e-09, -0.182435, -0.16122, 0.0104446, -0.0390856, 0.0497742)
+material_override = SubResource("StandardMaterial3D_too4x")
+mesh = ExtResource("8_lo2uh")
+
+[node name="MovementTurn" parent="RightHandController" instance=ExtResource("5_obsvx")]
+
+[node name="XRToolsHandPusher" parent="RightHandController" instance=ExtResource("6_l6nb4")]
+transform = Transform3D(-5.1162e-08, 0, 1, 0, 1, 0, -1, 0, -5.1162e-08, -0.00666045, 0, 0.250011)
+visible = false
+
+[node name="PlayerBody" parent="." instance=ExtResource("9_34vvx")]
+transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0.288496, -0.0868813, 0.258176)
+visible = false
+player_radius = 1.0
+player_relative_height_max = 0.5
+
+[node name="XRToolsMovementHandWalk" parent="." instance=ExtResource("10_bca6r")]
+fling_multiplier = 0.5
+max_velocity = 10.0
+grav = 5.0
+inertia_strength = null
+friction = null
+velocity_averages = 8

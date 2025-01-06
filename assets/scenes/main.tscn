@@ -1,0 +1,47 @@
+[gd_scene load_steps=11 format=3 uid="uid://dlmfp2l58fl7r"]
+
+[ext_resource type="Script" uid="uid://23txkodas5vr" path="res://assets/code/main.gd" id="1_mwfx3"]
+[ext_resource type="PackedScene" uid="uid://buc125t2bvypa" path="res://assets/scenes/rig.tscn" id="2_sfrgt"]
+[ext_resource type="Texture2D" uid="uid://d3c5m5ic6jxtk" path="res://assets/pics/skybox.jpg" id="12_1x6nc"]
+[ext_resource type="Texture2D" uid="uid://dx2tvu47y7io6" path="res://assets/pics/under construction.png" id="13_ytb86"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_dpr1q"]
+panorama = ExtResource("12_1x6nc")
+
+[sub_resource type="Sky" id="Sky_7s7r4"]
+sky_material = SubResource("PanoramaSkyMaterial_dpr1q")
+
+[sub_resource type="Environment" id="Environment_hqmuj"]
+background_mode = 2
+background_color = Color(0.447059, 0.458824, 0.454902, 1)
+sky = SubResource("Sky_7s7r4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rin3v"]
+albedo_texture = ExtResource("13_ytb86")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ahyqc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t7a27"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_mwfx3")
+
+[node name="Player" parent="." instance=ExtResource("2_sfrgt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.18182, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hqmuj")
+
+[node name="env" type="Node3D" parent="."]
+
+[node name="BasePlate" type="MeshInstance3D" parent="env"]
+transform = Transform3D(74.468, 0, 0, 0, 0.1, 0, 0, 0, 74.468, 0, -0.648262, 0)
+material_override = SubResource("StandardMaterial3D_rin3v")
+mesh = SubResource("BoxMesh_ahyqc")
+skeleton = NodePath("TEST_plat")
+
+[node name="TEST_plat" type="StaticBody3D" parent="env/BasePlate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="env/BasePlate/TEST_plat"]
+shape = SubResource("BoxShape3D_t7a27")

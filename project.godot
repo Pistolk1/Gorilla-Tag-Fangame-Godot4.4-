@@ -10,10 +10,19 @@ config_version=5
 
 [application]
 
-config/name="VrTest"
-run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.1", "Mobile")
-config/icon="res://icon.svg"
+config/name="gtagfangame"
+config/description="Development Build 2: 
+Added; 
+* inertia in the movement system provided by ClaudeAI
+Changed; 
+* name of test plaform as well as order of nodes
+* Icons have been updated properly
+* Q1/Q2 exports have been removed as those devices are no longer supported"
+config/version="DB002"
+run/main_scene="res://assets/scenes/main.tscn"
+config/features=PackedStringArray("4.4", "Mobile")
+boot_splash/image="uid://dgv2vlxxr6bw"
+config/icon="res://assets/pics/gtmonksplash.png"
 
 [autoload]
 
@@ -34,6 +43,7 @@ common/physics_ticks_per_second=90
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
 
 [xr]
 

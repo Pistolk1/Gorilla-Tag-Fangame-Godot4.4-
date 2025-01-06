@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b034lil341txw"
+path="res://.godot/imported/vrplayerhandright.obj-3db2b30a99165ce693574862ce91bb89.mesh"
+
+[deps]
+
+files=["res://.godot/imported/vrplayerhandright.obj-3db2b30a99165ce693574862ce91bb89.mesh"]
+
+source_file="res://assets/models/vrplayerhandright.obj"
+dest_files=["res://.godot/imported/vrplayerhandright.obj-3db2b30a99165ce693574862ce91bb89.mesh", "res://.godot/imported/vrplayerhandright.obj-3db2b30a99165ce693574862ce91bb89.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

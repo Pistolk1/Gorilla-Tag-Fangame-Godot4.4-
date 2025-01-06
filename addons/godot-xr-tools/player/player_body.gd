@@ -52,10 +52,10 @@ const NEAR_GROUND_DISTANCE := 1.0
 @export var player_head_height : float = 0.1
 
 ## Minimum player height
-@export var player_height_min : float = 0.6
+@export var player_height_min : float = 0.02
 
 ## Maximum player height
-@export var player_height_max : float = 2.2
+@export var player_height_max : float = 1.0
 
 ## Eyes forward offset from center of body in player_radius units
 @export_range(0.0, 1.0) var eye_forward_offset : float = 0.5
@@ -101,7 +101,7 @@ var ground_physics : XRToolsGroundPhysicsSettings = null
 var ground_control_velocity : Vector2 = Vector2.ZERO
 
 ## Player height offset - used for height calibration
-var player_height_offset : float = 0.0
+var player_height_offset : float = 0
 
 ## Velocity of the ground under the players feet
 var ground_velocity : Vector3 = Vector3.ZERO
@@ -128,7 +128,7 @@ var _jump_cooldown := 0
 var _player_height_overrides := { }
 
 # Player height override (enabled when non-negative)
-var _player_height_override : float = -1.0
+var _player_height_override : float = 0.02
 
 # Previous ground node
 var _previous_ground_node : Node3D = null
@@ -178,7 +178,7 @@ func _ready():
 	# Create our collision shape, height will be updated later
 	var capsule = CapsuleShape3D.new()
 	capsule.radius = player_radius
-	capsule.height = 1.4
+	capsule.height = 1.0
 	_collision_node = CollisionShape3D.new()
 	_collision_node.shape = capsule
 	_collision_node.transform.origin = Vector3(0.0, 0.8, 0.0)
